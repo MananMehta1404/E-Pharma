@@ -1,6 +1,7 @@
 import './globals.css'
 
-// import Nav from '@components/Nav';
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer";
 
 export const metadata = {
     title: "E-Pharma",
@@ -16,8 +17,9 @@ const RootLayout = ({ children }) => {
         </div>
 
         <main className='app'>
-            {/* <Nav /> */}
+            <Navbar />
             {children}
+            <Footer />
         </main>
       </body>
     </html>
