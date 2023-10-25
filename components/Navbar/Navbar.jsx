@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 // import AuthorizeUserMobile from './AuthorizeUserMobile';
 import NavBrand from './NavBrand';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 const Navbar = () => {
     const [changeHeader, setChangeHeader] = useState(false)
@@ -33,7 +34,7 @@ const Navbar = () => {
     }
 
     // change header by scrolling
-    window.addEventListener('scroll', onChangeHeader)
+    if(typeof window !== 'undefined') window.addEventListener('scroll', onChangeHeader)
 
     return (
         <header className={changeHeader ? "bg-white fixed z-50 top-0 left-0 w-full shadow-md transition duration-500" : "bg-transparent fixed z-50 top-0 left-0 w-full transition duration-500"}>
