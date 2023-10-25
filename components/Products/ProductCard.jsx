@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 import Rating from 'react-rating';
-// import { useHistory } from 'react-router-dom';
-import swal from 'sweetalert';
-// import useAuth from '../../hooks/useAuth';
-// import useOrder from '../../hooks/useOrder';
 import Button from '../Form/Button';
+import { Link } from 'next/link';
 
-const Product = (props) => {
+const ProductCard = (props) => {
     const [disabled, setDisabled] = useState(false);
     const { title, image, description, price, reviews, rating } = props;
     // const history = useHistory();
@@ -47,7 +44,9 @@ const Product = (props) => {
                     {/* </>
                 )} */}
                
-                <Button className="w-36 btn-primary py-3 px-2 poppins text-sm" text="View" />
+                {/* <Link href={`/product/${title}`}> View */}
+                    <Button className="w-36 btn-primary py-3 px-2 poppins text-sm" text="View" />
+                {/* </Link> */}
             </div>
 
         </div>
@@ -55,4 +54,4 @@ const Product = (props) => {
     )
 }
 
-export default Product
+export default ProductCard

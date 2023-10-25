@@ -3,9 +3,9 @@
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
 import Heading from '../Heading';
-import Product from './Product';
+import ProductCard from './ProductCard';
 
-const Products = () => {
+const ProductsContainer = () => {
     const [data] = useFetch('products');
     
     return (
@@ -16,7 +16,7 @@ const Products = () => {
             {/* products  */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-6">
                 {data.slice(0,6).map(product => (
-                    <Product {...product} />
+                    <ProductCard {...product} />
                 ))}
             </div>
                 
@@ -24,4 +24,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default ProductsContainer

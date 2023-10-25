@@ -5,7 +5,7 @@ import Rating from 'react-rating';
 
 const Testimonial = ({ username, image, review, rating }) => {
     return (
-        <div className="container px-5 py-12 mx-auto">
+        <div className="container px-5 py-5 mx-auto">
             <div className="w-full mx-auto text-center bg-gray-50 p-4 shadow-lg">
                 <Image className="mx-auto mb-4" src="/assets/right-quote-sign.png" alt="quotes" width={60} height={60} />
                 <p className="leading-relaxed poppins text-gray-500">{review}</p>

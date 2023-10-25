@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Banner = () => {
 
     return (
-        <section className="max-w-screen-xl py-10 mx-auto px-6">
+        <section className="max-w-screen-xl py-20 mx-auto px-6">
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 py-12">
                 

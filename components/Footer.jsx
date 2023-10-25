@@ -19,8 +19,7 @@ const Footer = () => {
         { id: 12, text: '+ (713)534-2319' },
     ]
     return (
-        // <Fade left>
-        <footer className="text-gray-600 poppins bg-gray-100 w-full">
+        <footer className="text-gray-600 poppins bg-gray-100 w-full bottom-0 left-0">
             <div className="max-w-screen-xl px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
                     <NavBrand />
@@ -70,7 +69,6 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-        // </Fade>
     )
 }
 

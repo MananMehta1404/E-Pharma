@@ -2,15 +2,13 @@
 
 import React, { useState } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
-// import Fade from 'react-reveal/Fade';
-import { NavLink } from 'react-router-dom';
-// import AuthorizeUser from './AuthorizeUser';
-// import AuthorizeUserMobile from './AuthorizeUserMobile';
 import NavBrand from './NavBrand';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+    const router = useRouter();
+
     const [changeHeader, setChangeHeader] = useState(false)
     const [mobileNav, setMobileNav] = useState(false)
 
@@ -33,6 +31,15 @@ const Navbar = () => {
         }
     }
 
+    function isActive(route){
+        if(route === router.pathname){
+            console.log(route)
+            console.log(router.pathname)
+            return true
+        }
+        else false
+     }
+
     // change header by scrolling
     if(typeof window !== 'undefined') window.addEventListener('scroll', onChangeHeader)
 
@@ -50,12 +57,11 @@ const Navbar = () => {
                     <ul className="flex items-center space-x-4">
                         {menu.map(item => (
                             <li key={item.id}>
-                                <Link href={item.to} className="text-gray-600 text-lg poppins" activeClassname="border-b-4 border-blue-600 text-blue-700">{item.text}</Link>
+                                <Link href={item.to} className={isActive(item.to) ? "border-b-4 border-blue-600 text-blue-700" : "text-gray-600 text-lg poppins"}>{item.text}</Link>
                             </li>
                         ))}
                     </ul>
 
-                    {/* <AuthorizeUser /> */}
                 </div>
 
                 {/* menu icon  */}
@@ -66,23 +72,18 @@ const Navbar = () => {
 
             {/* mobile nav  */}
             {mobileNav && (
-                // <Fade>
-                    <nav className="bg-white shadow-lg mx-6 mt-2 p-4 rounded-lg border border-gray-300 py-4 block md:hidden lg:hidden">
-                        <ul className="mb-2">
-                            {menu.map(item => (
-                                <li key={item.id} className="mb-3">
-                                    <NavLink exact key={item.id} to={item.to} className="text-gray-600 poppins text-lg text-center py-2 px-3 w-full hover:bg-gray-200 transition duration-300 cursor-default block rounded-lg" activeClassname="border-l-4 border-blue-700 bg-gray-200">
-                                    {item.text}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
+                <nav className="bg-white shadow-lg mx-6 mt-2 p-4 rounded-lg border border-gray-300 py-4 block md:hidden lg:hidden">
+                    <ul className="mb-2">
+                        {menu.map(item => (
+                            <li key={item.id} className="mb-3">
+                                <Link href={item.to} className="text-gray-600 poppins text-lg text-center py-2 px-3 w-full hover:bg-gray-200 transition duration-300 cursor-default block rounded-lg">
+                                {item.text}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
 
-                        <div>
-                            {/* <AuthorizeUserMobile /> */}
-                        </div>
-                    </nav>
-                // </Fade>
+                </nav>
             )}
         </header>
     )
