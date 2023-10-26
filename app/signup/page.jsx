@@ -4,25 +4,23 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Brand from '../../components/Brand'
 import Button from '../../components/Form/Button'
-// import GoogleSignIn from '../components/Form/GoogleSignIn'
 import TextField from '../../components/Form/TextField'
-// import useAuth from '../hooks/useAuth'
+import { useRouter } from 'next/navigation'
 
 const SignUpScreen = () => {
+    const router = useRouter();
+
     const [userInput, setUserInput] = useState({
         name: '',
         email: '',
-        image: '',
         password: '',
     })
-    // const { signUpUser } = useAuth()
 
     //form inputs
     const Inputs = [
         { id: 1, type: "text", placeholder: "Name", value: `${userInput.name}`, name: 'name' },
         { id: 2, type: "email", placeholder: "Email", value: `${userInput.email}`, name: 'email' },
-        { id: 3, type: "text", placeholder: "Profile Picture Link", value: `${userInput.image}`, name: 'image' },
-        { id: 4, type: "password", placeholder: "Password", value: `${userInput.password}`, name: 'password' },
+        { id: 3, type: "password", placeholder: "Password", value: `${userInput.password}`, name: 'password' },
     ]
 
     //handle change 
@@ -36,10 +34,31 @@ const SignUpScreen = () => {
         })
 
     }
+
     //handle submit form 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // await signUpUser(userInput.email, userInput.password, userInput.name, userInput.image)
+
+        try {
+            const res = await fetch('/api/users/signup', {
+                method: "POST",
+                headers: {
+                  "Content-Type":"application/json"
+                },
+                body: JSON.stringify({
+                    name: userInput.name,
+                    email: userInput.email,
+                    password: userInput.password
+                })
+            })
+
+            console.log(res);
+
+            if(res.ok) router.push('/login');
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -63,12 +82,11 @@ const SignUpScreen = () => {
                                 />
                             ))}
                         </div>
-                        <Button text="Sign Up" />
+                        <Button type="submit" text="Sign Up" />
                         <Link href="/signin">
                             <p className="text-base text-primary text-center my-6 hover:underline">Already have an account ?</p>
                         </Link>
 
-                        {/* <GoogleSignIn text="Sign Up With Google" /> */}
                     </form>
                 </div>
 

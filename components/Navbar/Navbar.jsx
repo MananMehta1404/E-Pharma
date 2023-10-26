@@ -60,8 +60,13 @@ const Navbar = () => {
                                 <Link href={item.to} className={isActive(item.to) ? "border-b-4 border-blue-600 text-blue-700" : "text-gray-600 text-lg poppins"}>{item.text}</Link>
                             </li>
                         ))}
+
                     </ul>
 
+                    <div className="flex items-center justify-end space-x-6">
+                        <button className="poppins" onClick={() => router.push('/signin')}>Sign In</button>
+                        <button className="btn-primary px-6 py-3  rounded-full" onClick={() => router.push('/signup')}>Sign Up</button>
+                    </div>
                 </div>
 
                 {/* menu icon  */}

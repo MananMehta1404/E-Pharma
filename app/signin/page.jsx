@@ -29,7 +29,21 @@ const SignInScreen = () => {
     //handle submit form 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // await signInUser(userInput.email, userInput.password)
+
+        const res =  await fetch('/api/users/signin',{
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+              email: userInput.email,
+              password: userInput.password
+            })
+        })
+
+        if(res.ok){
+            router.push('/')
+        }
     }
 
     //form inputs
