@@ -3,17 +3,17 @@
 import React, { useState } from 'react'
 import Brand from '../../components/Brand'
 import Button from '../../components/Form/Button'
-// import GoogleSignIn from '../components/Form/GoogleSignIn'
 import TextField from '../../components/Form/TextField'
 import Link from 'next/link'
-// import useAuth from '../hooks/useAuth'
+import { useRouter } from 'next/navigation'
 
 const SignInScreen = () => {
+    const router = useRouter();
+    
     const [userInput, setUserInput] = useState({
         email: '',
         password: '',
     })
-    // const { signInUser } = useAuth()
 
     // handle change
     const handleChange = (e) => {
@@ -83,7 +83,6 @@ const SignInScreen = () => {
                             <p className="text-base text-primary text-center my-6 hover:underline">Need an account ?</p>
                         </Link>
 
-                        {/* <GoogleSignIn text="Sign In With Google" /> */}
                     </form>
                 </div>
 

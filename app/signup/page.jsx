@@ -41,7 +41,7 @@ const SignUpScreen = () => {
 
         try {
             const res = await fetch('/api/users/signup', {
-                method: "POST",
+                method: 'POST',
                 headers: {
                   "Content-Type":"application/json"
                 },
@@ -54,7 +54,7 @@ const SignUpScreen = () => {
 
             console.log(res);
 
-            if(res.ok) router.push('/login');
+            if(res.ok) router.push('/signin');
         }
         catch (error) {
             console.log(error);
