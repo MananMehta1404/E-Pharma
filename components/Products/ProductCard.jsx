@@ -1,16 +1,20 @@
+"use client"
+
 import React, { useState } from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 import Rating from 'react-rating';
 import Button from '../Form/Button';
-import { Link } from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const ProductCard = (props) => {
     const [disabled, setDisabled] = useState(false);
-    const { title, image, description, price, reviews, rating } = props;
-    // const history = useHistory();
-    // const { handleCart, orders } = useOrder();
-    // const { user } = useAuth();
+    const { title, image, description, price, reviews, rating, id } = props;
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/product/${id}`);
+    }
 
     return (
         <div className="flex flex-col justify-center items-center space-y-3 bg-white border border-gray-200 hover:shadow-xl transition duration-700 ease-in-out transform hover:scale-105 p-4 box-border rounded-xl">
@@ -43,10 +47,8 @@ const ProductCard = (props) => {
                         </button>
                     {/* </>
                 )} */}
-               
-                {/* <Link href={`/product/${title}`}> View */}
-                    <Button className="w-36 btn-primary py-3 px-2 poppins text-sm" text="View" />
-                {/* </Link> */}
+
+                    <Button className="w-36 btn-primary py-3 px-2 poppins text-sm"  text="View" onClick={handleClick}/>
             </div>
 
         </div>

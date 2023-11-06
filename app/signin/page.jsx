@@ -5,6 +5,7 @@ import Brand from '../../components/Brand'
 import Button from '../../components/Form/Button'
 import TextField from '../../components/Form/TextField'
 import Link from 'next/link'
+import cookie from 'js-cookie'
 import { useRouter } from 'next/navigation'
 
 const SignInScreen = () => {
@@ -40,6 +41,17 @@ const SignInScreen = () => {
               password: userInput.password
             })
         })
+
+        const res2 = await res.json();
+        if(res2.error) {
+            M.toast({ html: res.error, classes: "red"})
+        }
+        else {
+            console.log(res2);
+            cookie.set('token', res2.token);
+            cookie.set('user', res2.user);
+            router.push('/');
+        }
 
         if(res.ok){
             router.push('/')

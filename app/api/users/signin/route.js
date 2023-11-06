@@ -12,14 +12,12 @@ export async function POST(req, res) {
     try{
         if(!email || !password) {
             return NextResponse.json({ error: "Please fill up all the fields" }, { statusCode: 422 });
-            // return res.status(422).json({error:"please fill all the fields"})
         }
 
         const user = await User.findOne({email})
 
         if(!user){
             return NextResponse.json({ error: "User don't exit with that email"}, { statusCode: 404});
-            // return res.status(404).json({error:"user dont exists with that email"})
         }
 
         const doMatch =  await bcrypt.compare(password,user.password)
@@ -32,13 +30,10 @@ export async function POST(req, res) {
             const { name,email } = user
 
             return NextResponse.json({ token, user: { name, email } }, { statusCode: 201 });
-            // res.status(201).json({token, user: {name, email}})
         } else{
             return NextResponse.json({ error: "Invalid Email or Password"});
-            // return res.status(401).json({error:"email or password dont match"})
         }
     } catch(err) {
         return NextResponse.json({ error: err }, { statusCode: 500 });
-        // console.log(err)
     }
 }

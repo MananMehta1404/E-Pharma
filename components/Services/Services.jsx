@@ -5,7 +5,6 @@ import useFetch from '../../hooks/useFetch';
 import Heading from '../Heading';
 import Service from './Service';
 
-
 const Services = () => {
     const [data] = useFetch('services');
 
